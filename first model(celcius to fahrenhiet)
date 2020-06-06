@@ -1,0 +1,74 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled0.ipynb",
+      "provenance": [],
+      "authorship_tag": "ABX9TyO/Lc7eYVZ4XyI09YPOvnxC",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "accelerator": "GPU"
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/mostlypanda/udacity-ml-deep-learning/blob/master/first%20model(celcius%20to%20fahrenhiet)\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "1UGZIEJSyeIw",
+        "colab_type": "code",
+        "outputId": "d04a703b-41d2-4c54-a764-67e712b84b94",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 34
+        }
+      },
+      "source": [
+        "import tensorflow as tf\n",
+        "import numpy as np\n",
+        "\n",
+        "celsius_q    = np.array([-40, -10,  0,  8, 15, 22,  38],  dtype=float)\n",
+        "fahrenheit_a = np.array([-40,  14, 32, 46, 59, 72, 100],  dtype=float)\n",
+        "\n",
+        "\n",
+        "l0 = tf.keras.layers.Dense(units=1, input_shape=[1]) \n",
+        "\n",
+        "model = tf.keras.Sequential([l0])\n",
+        "\n",
+        "model.compile(loss='mean_squared_error', optimizer=tf.keras.optimizers.Adam(0.1))\n",
+        "\n",
+        "history = model.fit(celsius_q, fahrenheit_a, epochs=500, verbose=False)\n",
+        "\n",
+        "model.predict([130.0])"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([[266.0437]], dtype=float32)"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 2
+        }
+      ]
+    }
+  ]
+}
